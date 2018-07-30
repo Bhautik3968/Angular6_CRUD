@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>Login to Your Account</h1>
+      <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmit(loginForm.value)" class="col s12 white">
+        <div class="form-group">
+          <div class="input-field col s12">
+            <input type="text" class="form-control" [(ngModel)]="user.Username" name="Username" placeholder="Username" #Username="ngModel"
+              [ngClass]="{'is-invalid':loginForm.submitted && Username.invalid}" required>
+            <div *ngIf="loginForm.submitted && Username.invalid" class="invalid-feedback">
+              Username is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-field col s12">
+            <input type="password" class="form-control" [(ngModel)]="user.Password" name="Password" placeholder="Password" #Password="ngModel"
+              [ngClass]="{'is-invalid':loginForm.submitted && Password.invalid}" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+            <div *ngIf="loginForm.submitted && Password.invalid" class="invalid-feedback">
+              <div *ngIf="Password.errors.required">Password is required</div>
+              <div *ngIf="Password.errors.pattern">Password must contain At least one upper case letter, one lower case letter, one digit, one special character,
+                Minimum eight in length!</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-field col s12">
+            <label [hidden]="isValidUser">Invalid Login!</label>
+            <!--  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button> -->
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
