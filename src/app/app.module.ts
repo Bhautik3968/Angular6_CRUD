@@ -51,9 +51,9 @@ const appRoutes: Routes = [
    providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }    
   ], 
-  /* entryComponents:[
+  entryComponents:[
     ProductDetailComponent    
-  ], */
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
