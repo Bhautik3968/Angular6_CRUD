@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }    
   ], 
   entryComponents:[
-    ProductDetailComponent
+    ProductDetailComponent    
   ],
   bootstrap: [AppComponent]
 })
