@@ -3,13 +3,12 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { User } from './user';
 import { Product } from './product';
-import { IResponse } from './response';
 import { catchError} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class TestAPIService {
-  /* apiUrl: string = "http://localhost:50637/api/"; */
+  //apiUrl: string = "http://localhost:50637/api/";
   apiUrl: string = "http://localhost:7885/api/";
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) { }
@@ -35,15 +34,15 @@ export class TestAPIService {
     return this.http.post<Product>(`${this.apiUrl}SaveProduct`, product, { headers: this.headers }).pipe(catchError(this.handleError<Product>('SaveProduct')));
   }
 
-  public DeleteProduct(ID: number): Observable<IResponse> {    
-    return this.http.delete<IResponse>(`${this.apiUrl}Product/${ID}`).pipe(catchError(this.handleError<IResponse>('DeleteProduct')));
+  public DeleteProduct(ID: number): Observable<any> {    
+    return this.http.delete<any>(`${this.apiUrl}Product/${ID}`).pipe(catchError(this.handleError<any>('DeleteProduct')));
   }
 
   private handleError<T>(operation='operation', result?:T)
   {
     return (error:any):Observable<T>=>{     
       console.log(`Method: ${operation}, Error Message:${error.message}`);
-      return of(result as T);      
+      return of(result as T);         
     }
   }
 }

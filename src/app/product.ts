@@ -1,6 +1,4 @@
-import { IResponse } from "./response";
-
-export class Product implements IResponse{
+export class Product {
     constructor(
         public ID: number = 0,
         public Name?: string,

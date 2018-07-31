@@ -13,14 +13,10 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit(product) {
-    this.service.SaveProduct(product).subscribe(data => {
-      if (data.Success) {        
+    this.service.SaveProduct(product).subscribe(data => {    
+      if (data) {        
           this.dialogRef.close(data);         
-      }
-      else {
-        alert("Error while saving product: " + data.ResponseString);
-        return false;
-      }
+      }      
     });
   }  
 

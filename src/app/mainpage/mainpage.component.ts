@@ -30,7 +30,7 @@ export class MainpageComponent implements OnInit {
     this.GetProducts();
   }
   GetProducts() {
-    this.service.GetProducts().subscribe(data => { this.products = data; this.filteredProducts = data})
+    this.service.GetProducts().subscribe(data => { this.products = data; this.filteredProducts = data })
   }
 
   onShowHidebuttonClick() {
@@ -39,17 +39,12 @@ export class MainpageComponent implements OnInit {
 
   onDeleteClick(product: Product) {
     if (confirm("Are you sure want to delete?") == true) {
-      this.service.DeleteProduct(product.ID).subscribe(data => {
-        if (data.Success) {
-          let itemIndex=this.filteredProducts.indexOf(product);        
-          if(itemIndex>0)
-          {
-            this.filteredProducts.splice(itemIndex,1)
-          }       
-        }
-        else {
-          alert("Error while deleting product: " + data.ResponseString);
-          return false;
+      this.service.DeleteProduct(product.ID).subscribe(response => {
+        if (response) {
+          let itemIndex = this.filteredProducts.indexOf(product);
+          if (itemIndex > 0) {
+            this.filteredProducts.splice(itemIndex, 1)
+          }
         }
       })
     }
@@ -67,8 +62,8 @@ export class MainpageComponent implements OnInit {
   onAddClick() {
     this.openModelPopUP(new Product());
   }
-  onEditClick(product) {  
-    var _obJProduct= Object.assign({}, product);
+  onEditClick(product) {
+    var _obJProduct = Object.assign({}, product);
     this.openModelPopUP(_obJProduct);
   }
 
@@ -79,10 +74,10 @@ export class MainpageComponent implements OnInit {
         if (product.ID == 0) {
           this.filteredProducts.push(result);
         }
-        else {          
-          let item=this.filteredProducts.filter(x=>x.ID==product.ID)[0];
-          let itemIndex = this.filteredProducts.indexOf(item);                
-          this.filteredProducts[itemIndex] =result;
+        else {
+          let item = this.filteredProducts.filter(x => x.ID == product.ID)[0];
+          let itemIndex = this.filteredProducts.indexOf(item);
+          this.filteredProducts[itemIndex] = result;
         }
       }
     });
