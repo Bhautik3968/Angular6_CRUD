@@ -12,9 +12,9 @@ export class TestAPIService {
   tokenUrl: string = "http://localhost:8026/api/token"; 
   constructor(private http: HttpClient) { }
   public AuthenticateUser(user: User) {
-    /* var data = `username=${user.Username}&password=${user.Password}&grant_type=password`;
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
-    return this.http.post(`${this.apiUrl}token`, data, { headers: reqHeader }).pipe(catchError(this.handleError<any>('AuthenticateUser'))); */      
+    //var data = `username=${user.Username}&password=${user.Password}&grant_type=password`;
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    //return this.http.post(this.tokenUrl, data, { headers: reqHeader }).pipe(catchError(this.handleError<any>('AuthenticateUser')));  
     var reqHeader = new HttpHeaders({'No-Auth': 'True','Content-Type':'application/json'});
     return this.http.post(this.tokenUrl, user, { headers: reqHeader }).pipe(catchError(this.handleError<any>('AuthenticateUser')));
   }
@@ -32,7 +32,7 @@ export class TestAPIService {
   }
 
   public SaveProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product).pipe(catchError(this.handleError<Product>('SaveProduct')));
+    return this.http.post<Product>(this.apiUrl,product).pipe(catchError(this.handleError<Product>('SaveProduct')));
   }
 
   public UpdateProduct(product: Product): Observable<Product> {
