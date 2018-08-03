@@ -1,24 +1,33 @@
-import { Component, OnInit, Inject,Input} from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { Product } from '../product'
 import { TestAPIService } from '../test-api.service'
-import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit { 
-  constructor(private service: TestAPIService, private dialogRef: MatDialogRef<ProductDetailComponent>,@Inject(MAT_DIALOG_DATA) public product: Product) {
+export class ProductDetailComponent implements OnInit {
+  constructor(private service: TestAPIService, private dialogRef: MatDialogRef<ProductDetailComponent>, @Inject(MAT_DIALOG_DATA) public product: Product) {
   }
   ngOnInit() { }
 
   onSubmit(product) {
-    this.service.SaveProduct(product).subscribe(data => {    
-      if (data) {        
-          this.dialogRef.close(data);         
-      }      
-    });
-  }  
+    if (product.ID > 0) {
+      this.service.UpdateProduct(product).subscribe(data => {
+        if (data) {
+          this.dialogRef.close(data);
+        }
+      });
+    }
+    else {
+      this.service.SaveProduct(product).subscribe(data => {
+        if (data) {
+          this.dialogRef.close(data);
+        }
+      });
+    }
+  }
 
   handleFileSelect(event) {
     var file = event.target.files[0];
@@ -34,7 +43,7 @@ export class ProductDetailComponent implements OnInit {
     this.product.Image = btoa(binaryString);
   }
 
-  onCancelClick() {   
+  onCancelClick() {
     this.dialogRef.close()
   }
 

@@ -30,7 +30,7 @@ export class MainpageComponent implements OnInit {
     this.GetProducts();
   }
   GetProducts() {
-    this.service.GetProducts().subscribe(data => { this.products = data; this.filteredProducts = data })
+    this.service.GetProducts().subscribe(data => { this.products = data; this.filteredProducts = data;})
   }
 
   onShowHidebuttonClick() {

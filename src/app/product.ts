@@ -4,9 +4,6 @@ export class Product {
         public Name?: string,
         public Price?: string,
         public Quantity?: number,
-        public Image?: string,  
-        public Success?:boolean,  
-        public ResponseString?: string,
-        public StatusCode?: number          
+        public Image?: string        
     ) {}
 }
