@@ -7,12 +7,9 @@ import { catchError} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class TestAPIService {
-  //apiUrl: string = "http://localhost:50637/api/Product/";
- /* apiUrl: string = "http://localhost:7885/api/Product/";
-    tokenUrl: string = "http://localhost:7885/api/token";*/
-  apiUrl: string = "https://localhost:5001/api/Product";
-  tokenUrl: string = "https://localhost:5001/api/token"; 
+export class TestAPIService {  
+  apiUrl: string = "http://localhost:8026/api/Product";
+  tokenUrl: string = "http://localhost:8026/api/token"; 
   constructor(private http: HttpClient) { }
   public AuthenticateUser(user: User) {
     /* var data = `username=${user.Username}&password=${user.Password}&grant_type=password`;
