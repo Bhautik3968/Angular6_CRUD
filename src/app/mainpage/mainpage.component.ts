@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestAPIService } from '../test-api.service'
 import { Product } from '../product'
 import { Router } from '@angular/router'
-import { ProductDetailComponent } from './../product-detail/product-detail.component'
+import { ProductDetailComponent } from '../product-detail/product-detail.component'
 import { MatDialog } from '@angular/material';
 
 @Component({

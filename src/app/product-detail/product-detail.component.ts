@@ -12,7 +12,7 @@ export class ProductDetailComponent implements OnInit {
   }
   ngOnInit() { }
 
-  onSubmit(product) {
+  onSubmit(product) {     
     if (product.ID > 0) {
       this.service.UpdateProduct(product).subscribe(data => {
         if (data) {

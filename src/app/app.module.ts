@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {MatDialogModule} from '@angular/material'
-import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material'
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -14,6 +14,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component'
 import { AuthGuard } from './auth.guard'
 import { AuthInterceptor } from './auth.interceptor'
+import { GlobalErrorHandlerService } from './global-error-handler.service';
+import { GlobalErrorComponent } from './global-error/global-error.component';
 
 const appRoutes: Routes = [
   {
@@ -28,7 +30,11 @@ const appRoutes: Routes = [
   {
     path: 'app-product-detail',
     component: ProductDetailComponent,
-    canActivate: [AuthGuard]    
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'error/:id',
+    component: GlobalErrorComponent   
   }
 ];
 
@@ -37,8 +43,9 @@ const appRoutes: Routes = [
     AppComponent,
     UserloginComponent,
     MainpageComponent,
-    ProductDetailComponent
-  ],  
+    ProductDetailComponent,
+    GlobalErrorComponent
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -48,11 +55,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatDialogModule
   ],
-   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }    
-  ], 
-  entryComponents:[
-    ProductDetailComponent    
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService }
+  ],
+  entryComponents: [
+    ProductDetailComponent
   ],
   bootstrap: [AppComponent]
 })
