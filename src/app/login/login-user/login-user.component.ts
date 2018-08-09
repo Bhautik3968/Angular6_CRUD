@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { TestAPIService } from '../test-api.service'
+import { TestAPIService } from '../../test-api.service'
 import { User } from '../user'
+
 @Component({
-  selector: 'app-userlogin',
-  templateUrl: './userlogin.component.html',
-  styleUrls: ['./userlogin.component.css']
+  selector: 'app-login-user',
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.css']
 })
-export class UserloginComponent implements OnInit {
+export class LoginUserComponent implements OnInit {
   user: User;
   isValidUser: boolean = true;
   constructor(private router: Router, private service: TestAPIService) { }
@@ -15,12 +16,12 @@ export class UserloginComponent implements OnInit {
     this.user = new User();
   }
   onSubmit(formdata) {
-    this.service.AuthenticateUser(formdata).subscribe((data: any) => {          
+    this.service.AuthenticateUser(formdata).subscribe((data: any) => {           
       if(data)
       {
         sessionStorage.setItem('userToken', data.access_token);
-        this.isValidUser = true;
-        this.router.navigate(['app-mainpage']);
+        this.isValidUser = true;          
+        this.router.navigate(['product']);       
       }
       else
       {

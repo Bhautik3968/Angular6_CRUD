@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input} from '@angular/core';
 import { Product } from '../product'
-import { TestAPIService } from '../test-api.service'
+import { TestAPIService } from '../../test-api.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-product-detail',
@@ -12,7 +12,7 @@ export class ProductDetailComponent implements OnInit {
   }
   ngOnInit() { }
 
-  onSubmit(product) {     
+  onSubmit(product) {      
     if (product.ID > 0) {
       this.service.UpdateProduct(product).subscribe(data => {
         if (data) {

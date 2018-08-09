@@ -1,7 +1,7 @@
 import { Injectable, ErrorHandler, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Error } from './error';
-import { TestAPIService } from './test-api.service';
+import { TestAPIService } from '../test-api.service';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'

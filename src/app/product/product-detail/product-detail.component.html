@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>
+  Add/Edit Product</h2>
+<mat-dialog-content>
+  <form #productForm="ngForm" (ngSubmit)="productForm.form.valid && onSubmit(productForm.value)">
+      <input type="hidden" [(ngModel)]="product.ID" name="ID" id="ID">
+      <div class="form-group">
+          <label>Product
+              <span>*</span>
+          </label>
+          <input type="text" class="form-control" [(ngModel)]="product.Name" name="Name" #Name="ngModel"  [ngClass]="{'is-invalid':productForm.submitted && Name.invalid}"
+              required>         
+          <div *ngIf="productForm.submitted && Name.invalid" class="invalid-feedback">
+              Product Name is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Price
+              <span>*</span>
+          </label>
+          <input type="number" class="form-control" [(ngModel)]="product.Price" name="Price" #Price="ngModel" [ngClass]="{'is-invalid':productForm.submitted && Price.invalid}" required>
+          <div *ngIf="productForm.submitted && Price.invalid" class="invalid-feedback">
+              Price is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Qty
+              <span>*</span>
+          </label>
+          <input type="number" class="form-control" [(ngModel)]="product.Quantity" name="Quantity"  #Quantity="ngModel" [ngClass]="{'is-invalid':productForm.submitted && Quantity.invalid}" required>
+          <div *ngIf="productForm.submitted && Quantity.invalid" class="invalid-feedback">
+              Quantity is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Image</label>
+          <br/>
+          <img [src]="'data:image/jpg;base64,'+product.Image" *ngIf="product.Image">
+          <br/>
+          <input type="file" accept="image/*" (change)="handleFileSelect($event)">
+          <input type="hidden" [(ngModel)]="product.Image" name="Image" id="Image">
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-primary ml-1" (click)="productForm.reset();onCancelClick();">Cancel</button>
+      </div>
+  </form>
+</mat-dialog-content>

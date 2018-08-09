@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 @Component({
-  selector: 'app-global-error',
-  templateUrl: './global-error.component.html',
-  styleUrls: ['./global-error.component.css']
+  selector: 'app-error-global',
+  templateUrl: './error-global.component.html',
+  styleUrls: ['./error-global.component.css']
 })
-export class GlobalErrorComponent implements OnInit {
- ErrorID :number;
+export class ErrorGlobalComponent implements OnInit {
+  ErrorID :number;
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {

@@ -1,0 +1,47 @@
+
+<div class='card'>
+  <div class='card-header'>
+     Product List   
+     <input type="button" value="Add" (click)="onAddClick()" class='btn btn-primary float-right ml-1'/>
+     <input type="button" value="Logout" (click)="onLogoutClick()" class='btn btn-primary float-right'/>   
+  </div>
+  <div class='card-body'>
+    <div class="form-inline">
+     <div class="form-group">
+         <input type="text" [(ngModel)]="listFilter"  placeholder="Search By Product" class="form-control"/>
+     </div>
+    </div>    
+  </div>
+ </div>
+ <div clss='table-responsive'>
+ <table class="table table-bordered">
+   <thead>
+   <tr>
+     <th>ID</th>
+     <th><input type="button" class='btn btn-primary' (click)="onShowHidebuttonClick()" value="{{!showImage?'Show Image':'Hide Image'}}"/></th>    
+     <th>Product</th>
+     <th>Price</th>
+     <th>Qty</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr *ngFor="let product of filteredProducts">
+     <td>{{product.ID}}</td>
+     <td><img [hidden]="!showImage" [src]="'data:image/jpg;base64,'+product.Image" width="100" height="100"/></td>
+     <td>{{product.Name}}</td>
+     <td>{{product.Price | currency:'INR':'symbol'}}</td>  
+     <td>{{product.Quantity}}</td>      
+     <td>   
+        <input type="button" (click)="onEditClick(product)" value="Edit" class='btn btn-primary'/>
+        <input type="button" (click)="onDeleteClick(product)" value="Delete" class='btn btn-primary ml-1'/>       
+     </td>
+   </tr> 
+ </tbody>
+ </table>
+ </div>
+ 
+ 
+ 
+ 
+ 

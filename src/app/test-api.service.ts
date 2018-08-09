@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of} from 'rxjs';
-import { User } from './user';
-import { Product } from './product';
+import { User } from './login/user';
+import { Product } from './product/product';
 import { catchError} from 'rxjs/operators';
-import { Error } from './error';
+import { Error } from './error/error';
 @Injectable({
   providedIn: 'root'
 })
@@ -51,7 +51,7 @@ export class TestAPIService {
   public GetErrorByID(ID: number): Observable<Error> {
     return this.http.get<Error>(`${this.ErrorAPIUrl}/${ID}`).pipe(catchError(this.handleError<Error>('GetErrorByID')));
   }
-  public SaveError(error:Error): Observable<Error> {
+  public SaveError(error:Error): Observable<Error> {  
     return this.http.post<Error>(this.ErrorAPIUrl,error).pipe(catchError(this.handleError<Error>('SaveError')));
   }
  

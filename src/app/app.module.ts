@@ -5,63 +5,49 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-
-import { UserloginComponent } from './userlogin/userlogin.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
-
-import { ProductDetailComponent } from './product-detail/product-detail.component'
 import { AuthGuard } from './auth.guard'
 import { AuthInterceptor } from './auth.interceptor'
-import { GlobalErrorHandlerService } from './global-error-handler.service';
-import { GlobalErrorComponent } from './global-error/global-error.component';
-
-const appRoutes: Routes = [
+import { GlobalErrorHandlerService } from './error/global-error-handler.service';
+const appRoutes: Routes = [  
   {
-    path: '',
-    component: UserloginComponent
-  },
-  {
-    path: 'app-mainpage',
-    component: MainpageComponent,
+    path: 'product',
+    loadChildren:'./product/product.module#ProductModule',
     canActivate: [AuthGuard]
   },
   {
-    path: 'app-product-detail',
-    component: ProductDetailComponent,
-    canActivate: [AuthGuard]
+    path: 'login',
+    loadChildren:'./login/login.module#LoginModule'
   },
   {
     path: 'error/:id',
-    component: GlobalErrorComponent   
+    loadChildren:'./error/error.module#ErrorModule',
+    canActivate: [AuthGuard]    
+  },
+  {
+    path: '**',
+    redirectTo:'login',
+    pathMatch:'full'    
   }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UserloginComponent,
-    MainpageComponent,
-    ProductDetailComponent,
-    GlobalErrorComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
+    FormsModule,   
     BrowserAnimationsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService }
-  ],
-  entryComponents: [
-    ProductDetailComponent
-  ],
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

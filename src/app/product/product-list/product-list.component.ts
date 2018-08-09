@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TestAPIService } from '../test-api.service'
+import { TestAPIService } from '../../test-api.service'
 import { Product } from '../product'
 import { Router } from '@angular/router'
 import { ProductDetailComponent } from '../product-detail/product-detail.component'
 import { MatDialog } from '@angular/material';
-
 @Component({
-  selector: 'app-mainpage',
-  templateUrl: './mainpage.component.html',
-  styleUrls: ['./mainpage.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class MainpageComponent implements OnInit {
+export class ProductListComponent implements OnInit {
+
   showImage: boolean = true;
   products: Product[]
   filteredProducts: Product[]
@@ -26,7 +26,7 @@ export class MainpageComponent implements OnInit {
   constructor(private service: TestAPIService, private router: Router, private dialog: MatDialog) {
     this.listFilter = "";
   }
-  ngOnInit() {
+  ngOnInit() {    
     this.GetProducts();
   }
   GetProducts() {
@@ -83,4 +83,5 @@ export class MainpageComponent implements OnInit {
     });
   }
 }
+
 

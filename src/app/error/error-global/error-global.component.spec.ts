@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserloginComponent } from './userlogin.component';
+import { ErrorGlobalComponent } from './error-global.component';
 
-describe('UserloginComponent', () => {
-  let component: UserloginComponent;
-  let fixture: ComponentFixture<UserloginComponent>;
+describe('ErrorGlobalComponent', () => {
+  let component: ErrorGlobalComponent;
+  let fixture: ComponentFixture<ErrorGlobalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserloginComponent ]
+      declarations: [ ErrorGlobalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserloginComponent);
+    fixture = TestBed.createComponent(ErrorGlobalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
